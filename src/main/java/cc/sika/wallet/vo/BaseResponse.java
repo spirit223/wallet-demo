@@ -1,4 +1,4 @@
-package cc.sika.order.vo;
+package cc.sika.wallet.vo;
 
 import lombok.Data;
 

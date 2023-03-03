@@ -1,8 +1,10 @@
-package cc.sika.order.mapper;
+package cc.sika.wallet.mapper;
 
-import cc.sika.order.po.Order;
+import cc.sika.wallet.po.Order;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author 吴畅
@@ -17,4 +19,6 @@ public interface OrderMapper {
     int updateOrder(Order order);
 
     Order getOrderByOrderId(@Param("orderId") int orderId);
+
+    List<Order> getAllOrders(@Param("userId") int userId);
 }

@@ -1,4 +1,68 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cc.sika.order.mapper.BalanceMapper" >
+<mapper namespace="cc.sika.wallet.mapper.BalanceMapper">
+    <insert id="addBalance">
+        INSERT INTO
+            balance (user_id, total_amount, frozen_amount, available_balance)
+        VALUES
+                    (#{userId},#{totalAmount},#{frozenAmount},#{availableAmount})
+    </insert>
+    <update id="addMount">
+        UPDATE balance
+        SET
+            total_amount = #{bigDecimal},
+            available_balance = total_amount - frozen_amount
+        WHERE balance_id = #{balanceId}
+    </update>
+    <update id="frozenAmount">
+        UPDATE balance
+        SET
+            frozen_amount = frozen_amount + #{bigDecimal},
+            available_balance = total_amount - frozen_amount
+        WHERE balance_id = #{balanceId}
+    </update>
+    <update id="modifyAccount">
+        UPDATE balance
+        SET
+            balance.user_id = #{userId},
+            balance.total_amount = #{totalAmount},
+            balance.frozen_amount = #{frozenAmount},
+            balance.available_balance = balance.total_amount - balance.frozen_amount
+        WHERE
+            balance_id = #{balanceId};
+    </update>
+    <update id="frozenAmountByUserId">
+        UPDATE balance
+        SET
+            balance.frozen_amount = #{frozenAmount},
+            balance.available_balance = balance.total_amount - balance.frozen_amount
+        WHERE
+            balance.user_id = #{userId};
+    </update>
+
+
+    <delete id="deleteBalance">
+        DELETE FROM balance
+        WHERE balance_id = #{balanceId}
+    </delete>
+    <select id="getAvailableAmount" resultType="java.math.BigDecimal">
+        SELECT available_balance
+        FROM balance
+        WHERE balance_id = #{balanceId}
+    </select>
+    <select id="getFrozenAmount" resultType="java.math.BigDecimal">
+        SELECT frozen_amount
+        FROM balance
+        WHERE balance_id = #{balanceId}
+    </select>
+    <select id="getTotalMount" resultType="java.math.BigDecimal">
+        SELECT total_amount
+        FROM balance
+        WHERE balance_id = #{balanceId}
+    </select>
+    <select id="getAvailableAmountByUserId" resultType="java.math.BigDecimal">
+        SELECT b.available_balance
+        FROM balance AS b,`user` as u
+        WHERE b.balance_id = u.balance_id AND u.user_id = #{userId};
+    </select>
 </mapper>

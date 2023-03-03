@@ -1,4 +1,4 @@
-package cc.sika.order.po;
+package cc.sika.wallet.po;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

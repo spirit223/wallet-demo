@@ -1,6 +1,6 @@
-package cc.sika.order.mapper;
+package cc.sika.wallet.mapper;
 
-import cc.sika.order.po.User;
+import cc.sika.wallet.po.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

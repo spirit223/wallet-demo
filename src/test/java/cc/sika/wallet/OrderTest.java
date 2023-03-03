@@ -1,7 +1,7 @@
-package cc.sika.order;
+package cc.sika.wallet;
 
-import cc.sika.order.mapper.OrderMapper;
-import cc.sika.order.po.Order;
+import cc.sika.wallet.mapper.OrderMapper;
+import cc.sika.wallet.po.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

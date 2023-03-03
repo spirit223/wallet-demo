@@ -1,6 +1,6 @@
-package cc.sika.order.mapper;
+package cc.sika.wallet.mapper;
 
-import cc.sika.order.po.Balance;
+import cc.sika.wallet.po.Balance;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,23 +33,25 @@ public interface BalanceMapper {
      * @param bigDecimal
      * @return
      */
-    int frozenMount(@Param("balanceId") int balanceId, BigDecimal bigDecimal);
+    int frozenAmount(@Param("balanceId") int balanceId, BigDecimal bigDecimal);
+
+    int frozenAmountByUserId(@Param("userId") int userId, BigDecimal frozenAmount);
 
     /**
      * 获取可用余额
      * @param balanceId
      * @return
      */
-    BigDecimal getAvailableMount(@Param("balanceId") int balanceId);
+    BigDecimal getAvailableAmount(@Param("balanceId") int balanceId);
 
-    BigDecimal getAvailableMountByUserId(@Param("userId") int userId);
+    BigDecimal getAvailableAmountByUserId(@Param("userId") int userId);
 
     /**
      * 获取冻结金额
      * @param balanceId
      * @return
      */
-    BigDecimal getFrozenMount(@Param("balanceId") int balanceId);
+    BigDecimal getFrozenAmount(@Param("balanceId") int balanceId);
 
     /**
      * 获取总金额(可用+冻结)

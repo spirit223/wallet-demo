@@ -1,6 +1,6 @@
-package cc.sika.order.controller;
+package cc.sika.wallet.controller;
 
-import cc.sika.order.vo.BaseResponse;
+import cc.sika.wallet.vo.BaseResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;

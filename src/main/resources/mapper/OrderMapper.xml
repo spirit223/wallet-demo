@@ -2,6 +2,45 @@
 <!DOCTYPE mapper PUBLIC
         "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="">
+<mapper namespace="cc.sika.wallet.mapper.OrderMapper">
 
+    <insert id="addOrder" parameterType="cc.sika.wallet.po.Order"
+            useGeneratedKeys="true" keyProperty="orderId"
+    >
+        INSERT INTO
+            `order`(order_serial, order_user, order_amount, order_commodity, refund, order_time)
+        VALUES (#{orderSerial},#{orderUser},#{orderAmount},#{orderCommodity},#{refund}, #{orderTime})
+    </insert>
+
+    <update id="updateOrder">
+        UPDATE `order`
+        <set>
+            <if test="orderSerial != null&amp;&amp;!''.equals(orderSerial)">order_serial = #{orderSerial},</if>
+            <if test="orderUser != null&amp;&amp;orderUser != -1">order_user = #{orderUser},</if>
+            <if test="orderAmount != null&amp;&amp;orderAmount >= ''">order_amount = #{orderAmount},</if>
+            <if test="!''.equals(orderCommodity)&amp;&amp;orderCommodity != null">order_commodity = #{orderCommodity},</if>
+            <if test="refund != null">refund = #{refund},</if>
+            <if test="orderTime != null">order_time = #{orderTime}</if>
+        </set>
+        WHERE order_id = #{orderId}
+    </update>
+
+
+    <delete id="deleteOrder">
+        DELETE FROM `order` WHERE order_id = #{orderId}
+    </delete>
+
+
+
+
+    <select id="getOrderByOrderId" resultType="cc.sika.wallet.po.Order">
+        SELECT order_id, order_serial, order_user, order_amount, order_commodity, refund, order_time
+        FROM `order`
+        WHERE order_id = #{orderId}
+    </select>
+    <select id="getAllOrders" resultType="cc.sika.wallet.po.Order">
+        SELECT order_id, order_serial, order_user, order_amount, order_commodity, refund, order_time
+        FROM `order`
+        WHERE order_user = #{userId}
+    </select>
 </mapper>
