@@ -42,3 +42,9 @@ order表，order表用于记录每次用户消费，记录用户id，消费的�
 业务控制层继承`BaseController`，在 该类中统一了数据的响应方法, 使用 `BaseResponse` 类统一数据回传格式.
 
 Demo中的异常交由`ExceptionAdviceProcessor`进行统一处理,抽取出业务和接口层的异常处理逻辑代码.
+
+> 为方便查看接口和数据模型, 项目中插入 Swagger-UI, 在 `项目URL/swagger-ui/index.html` 可进行查看.
+> 
+> 接口通过 PostMan工具 测试, 结果截图在 `test/image` 目录下.
+> 
+> SQL 文件在 `sql` 文件夹下, 文件由 Navicat 导出, 使用 sql 文件导入时需先创建数据库, 库名(`wallet_demo`), 数据库编码(`utf8mb4`),排序规则(`utf8mb4_general_ci`)
